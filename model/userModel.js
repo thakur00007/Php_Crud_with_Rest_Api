@@ -17,7 +17,7 @@ class User {
 
      // create user
      createUser(table, obj){
-        let sql = `INSERT INTO ${table} (name, email, phone) values ('${obj.name}', ${obj.email}, ${obj.phone})`;
+        let sql = `INSERT INTO ${table} (name, email, phone) values ('${obj.name}', '${obj.email}', ${obj.phone})`;
         return sql;
     }
 
