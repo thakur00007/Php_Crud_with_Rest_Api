@@ -28,3 +28,46 @@ exports.getUsers = (req, res)=>{
     })
 }
 
+// get user by id
+exports.getUserById = (req, res)=>{
+    let id = req.params.id;
+    let user = new User();
+    if(!id){
+        res.status(400).json({
+            status: "fail",
+            message: "Id is empty",
+            data: null
+        })
+    }else if(isNaN(id)){
+        res.status(400).json({
+            status: "fail",
+            message: "Id is not a number",
+            data: null
+        })
+    }else{
+        db.query(user.getUserById('user', id), (err, result)=>{
+            if(err){
+                res.status(500).json({
+                    status: "fail",
+                    message: err.message,
+                    data: null
+                })
+            }
+            else if(result.length == 0){
+                res.status(404).json({
+                    status: "fail",
+                    message: "user not found",
+                    data: null
+                })
+            }
+            else{
+                res.status(200).json({
+                    status: "success",
+                    message: "User found",
+                    data: result
+                })
+            }
+        })
+    }
+}
+
