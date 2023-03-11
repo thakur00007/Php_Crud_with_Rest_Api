@@ -21,6 +21,12 @@ class User {
         return sql;
     }
 
+    // delete user by id
+    deleteUserById(table, id){
+        let sql = `DELETE FROM ${table} WHERE id = ${id}`;
+        return sql;
+    }
+
 }
 
 module.exports = User;

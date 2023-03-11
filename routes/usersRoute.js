@@ -13,4 +13,7 @@ router.get('/:id', userController.getUserById)
 // create user
 router.post('/', userController.createUser)
 
+// delete user by id
+router.delete('/:id', userController.deleteUserById)
+
 module.exports = router;
