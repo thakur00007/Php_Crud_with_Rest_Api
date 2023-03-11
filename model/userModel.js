@@ -27,6 +27,12 @@ class User {
         return sql;
     }
 
+    // update user by id
+    updateUserById(table, id, obj){
+        let sql = `UPDATE ${table} SET name = '${obj.name}', email = ${obj.email}, phone = ${obj.phone} WHERE id = ${id}`;
+        return sql;
+    }
+
 }
 
 module.exports = User;
