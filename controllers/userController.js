@@ -71,3 +71,39 @@ exports.getUserById = (req, res)=>{
     }
 }
 
+// create user
+exports.createUser = (req, res)=>{
+    let obj = {
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone
+    }
+    if(!obj.name || !obj.email || !obj.phone){
+        res.status(400).json({
+            status: "fail",
+            message: "One or more fields are empty",
+            data: null
+        })
+    }else{
+
+        let user = new User();
+        db.query(user.createUser('user', obj), (err, result)=>{
+            if(err){
+                
+                res.status(400).json({
+                    status: "fail",
+                    message: err.message,
+                    data: null
+                })
+
+            }else{
+                res.status(200).json({
+                    status: "success",
+                    message: "User created successfully",
+                    data: obj
+                })
+            }
+        })
+    }
+}
+

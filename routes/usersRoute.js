@@ -10,4 +10,7 @@ router.get('/', userController.getUsers)
 // get user by id
 router.get('/:id', userController.getUserById)
 
+// create user
+router.post('/', userController.createUser)
+
 module.exports = router;
