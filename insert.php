@@ -46,11 +46,11 @@
                         </div>
                         <div class="mb-1">
                             <label class="form-label">Phone</label>
-                            <input placeholder="Phone Number" name="phone" type="password" class="form-control" required="">
+                            <input placeholder="Phone Number" name="phone" type="text" class="form-control" required="">
                         </div>
                         
                         <div class="d-inline-flex justify-content-center mb-2 col-12">
-                            <input type="submit" name="submit" class="btn btn-success    col-12 mt-2  my-auto" value="Insert">
+                            <input type="submit" name="submit" class="btn btn-success col-12 mt-2  my-auto" value="Insert">
                         </div>
                         </form>
                     </div>
