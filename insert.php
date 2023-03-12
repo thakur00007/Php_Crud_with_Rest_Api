@@ -67,7 +67,7 @@
             document.getElementById("alert").classList.add("alert-success");
 
 
-            // dismiss alert after 5 seconds
+            // dismiss alert after 3 seconds
             setTimeout(function() {
                 document.getElementById("alert").style.display = "none";
             }, 3000);
@@ -79,7 +79,7 @@
             document.getElementById("msg").innerHTML = msg;
             document.getElementById("alert").classList.add("alert-danger");
 
-            // dismiss alert after 5 seconds
+            // dismiss alert after 3 seconds
             setTimeout(function() {
                 document.getElementById("alert").style.display = "none";
             }, 3000);
@@ -111,7 +111,8 @@
 
         $res = curl_exec($ch);
         if($err = curl_error($ch)){
-            echo "cURL Error #:" . $err;
+            // echo "cURL Error #:" . $err;
+            echo "<script>errorAlert('Connection Failed $err');</script>";
         }
         else{
             $decode = json_decode($res, true);

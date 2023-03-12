@@ -12,34 +12,28 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <!-- <a href="index.php">Back</a> -->
     <?php
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
 
-        $id = $_GET['id'];
+            $ch = curl_init();
+            $url = "http://localhost:5000/user/$id";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $ch = curl_init();
-        $url = "http://localhost:5000/user/$id";
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $res = curl_exec($ch);
 
-        $res = curl_exec($ch);
-
-        if($err = curl_error($ch)){
-            echo "cURL Error #:" . $err;
-        }
-        else{
-            $decode = json_decode($res, true);
-            $data = $decode['data'];
-            $row = $data[0];
-        
+            if($err = curl_error($ch)){
+                echo "cURL Error #:" . $err;
+            }
+            else{
+                $decode = json_decode($res, true);
+                $data = $decode['data'];
+                $row = $data[0];
+            
 
     ?>
-    <!-- <form method="post">
-        <label>Name: </lable><input type="text" name="name" value="<?=$row['name']?>" ><br>
-        <label>Email: </lable><input type="text" name="email" value="<?=$row['email']?>" ><br>
-        <label>Phone: </lable><input type="text" name="phone" value="<?=$row['phone']?>" ><br>
-        <input type="submit" value = "submit" name="submit">
-    </form> -->
+    
         <div class="container">
             <div class="col-12 d-flex justify-content-center m-2 p-2">
                 <h1>CRUD Operation</h1>
@@ -86,6 +80,9 @@
 
     <?php
         }
+    }else{
+        echo "<script>location.href='index.php'</script>";
+    }
     ?>
 </body>
 </html>
@@ -96,7 +93,7 @@
             document.getElementById("alert").classList.add("alert-success");
 
 
-            // dismiss alert after 5 seconds
+            // dismiss alert after 3 seconds
             setTimeout(function() {
                 document.getElementById("alert").style.display = "none";
             }, 3000);
@@ -108,7 +105,7 @@
             document.getElementById("msg").innerHTML = msg;
             document.getElementById("alert").classList.add("alert-danger");
 
-            // dismiss alert after 5 seconds
+            // dismiss alert after 3 seconds
             setTimeout(function() {
                 document.getElementById("alert").style.display = "none";
             }, 3000);

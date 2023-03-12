@@ -40,7 +40,7 @@
                         $res = curl_exec($ch);
                     
                         if($err = curl_error($ch)){
-                            echo "cURL Error #:" . $err;
+                            echo "Connection failed! ".$err;
                         }
                         else{
                             $decode = json_decode($res, true);

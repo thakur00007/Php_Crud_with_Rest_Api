@@ -11,13 +11,15 @@
         $res = curl_exec($ch);
 
         if($err = curl_error($ch)){
-            echo "cURL Error #:" . $err;
+            echo "Connection Failed! $err". "<br>Back to <a href='index.php'>Home</a>";
         }
         else{
             $decode = json_decode($res, true);
             $data = $decode['data'];
             header("Location: index.php");
         }
+    }else{
+        header("Location: index.php");
     }
 
     ?>
