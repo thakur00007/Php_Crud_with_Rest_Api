@@ -6,13 +6,13 @@ exports.getUsers = (req, res)=>{
     let user = new User();
     db.query(user.getUsers('user'), (err, result)=>{
         if(err){
-            res.status(400).json({
+            res.status(500).json({
                 status: "fail",
                 data: err.message
             })
         }
         else if(result.length == 0){
-            res.status(200).json({
+            res.status(404).json({
                 status: "success",
                 message: "No user found",
                 data: null
@@ -84,13 +84,19 @@ exports.createUser = (req, res)=>{
             message: "One or more fields are empty",
             data: null
         })
+    }else if(isNaN(obj.phone)){
+        res.status(400).json({
+            status: "fail",
+            message: "Phone is not a number",
+            data: null
+        })
     }else{
 
         let user = new User();
         db.query(user.createUser('user', obj), (err, result)=>{
             if(err){
                 
-                res.status(400).json({
+                res.status(500).json({
                     status: "fail",
                     message: err.message,
                     data: null
@@ -174,6 +180,12 @@ exports.updateUserById = (req, res)=>{
         res.status(400).json({
             status: "fail",
             message: "Id is not a number",
+            data: null
+        })
+    }else if(isNaN(obj.phone)){
+        res.status(400).json({
+            status: "fail",
+            message: "Phone is not a number",
             data: null
         })
     }else{
