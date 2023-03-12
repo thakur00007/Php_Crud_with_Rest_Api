@@ -52,8 +52,8 @@
                         <td><?=$row['name']?></td>
                         <td><?=$row['email']?></td>
                         <td><?=$row['phone']?></td>
-                        <td><a class="p-y" href="edit.php?id=<?=$row['id']?>"><i class="fas fa-edit"></i></a></td>
-                        <td><a class="p-3" onclick="if(confirm('Are you sure want to delete?')) window.location.href='delete.php?id=<?=$row['id']?>';"><i class="fas fa-trash text-danger"></i></a></td>
+                        <td><button  class=" btn btn-link" onclick="window.location.href='edit.php?id=<?=$row['id']?>';"><i class="fas fa-edit text-primary"></i></button></td>
+                        <td><button  class=" btn btn-link" onclick="if(confirm('Are you sure want to delete?')) window.location.href='delete.php?id=<?=$row['id']?>';"><i class="fas fa-trash text-danger"></i></button></td>
 
                     </tr>
                     <?php
