@@ -142,13 +142,13 @@
         }
         else{
             $decode = json_decode($res, true);
-            $data = $decode['data'];
+            $message = $decode['message'];
             
             if($decode['status'] == "success"){
-                echo "<script>successAlert('Data Updated Successfully');</script>";
+                echo "<script>successAlert('$message');</script>";
             }
             else{
-                echo "<script>errorAlert('Data Not Updated');</script>";
+                echo "<script>errorAlert('$message');</script>";
             }
         }
     }

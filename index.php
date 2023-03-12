@@ -43,20 +43,26 @@
                             echo "Connection failed! ".$err;
                         }
                         else{
+                            $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                            if($status_code == 200){
+                                    
                             $decode = json_decode($res, true);
                             $data = $decode['data'];
                             foreach($data as $row){
-                    ?>
-                    
-                    <tr>
-                        <td><?=$row['name']?></td>
-                        <td><?=$row['email']?></td>
-                        <td><?=$row['phone']?></td>
-                        <td><button  class=" btn btn-link" onclick="window.location.href='edit.php?id=<?=$row['id']?>';"><i class="fas fa-edit text-primary"></i></button></td>
-                        <td><button  class=" btn btn-link" onclick="if(confirm('Are you sure want to delete?')) window.location.href='delete.php?id=<?=$row['id']?>';"><i class="fas fa-trash text-danger"></i></button></td>
+                            ?>
+                            
+                            <tr>
+                                <td><?=$row['name']?></td>
+                                <td><?=$row['email']?></td>
+                                <td><?=$row['phone']?></td>
+                                <td><button  class=" btn btn-link" onclick="window.location.href='edit.php?id=<?=$row['id']?>';"><i class="fas fa-edit text-primary"></i></button></td>
+                                <td><button  class=" btn btn-link" onclick="if(confirm('Are you sure want to delete?')) window.location.href='delete.php?id=<?=$row['id']?>';"><i class="fas fa-trash text-danger"></i></button></td>
 
-                    </tr>
+                            </tr>
                     <?php
+                            }
+                        }else{
+                            echo "<h3>No data found!</h3>";
                         }
                     }
                     ?>
